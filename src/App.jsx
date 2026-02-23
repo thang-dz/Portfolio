@@ -75,6 +75,7 @@ function App() {
                 <a
                   target="_blank"
                   href="https://www.facebook.com/manh.thang.338636"
+                  className="social-link"
                 >
                   <div className="sm-tools">
                     <img src={FacebookIcon} />

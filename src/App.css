@@ -104,6 +104,9 @@ body {
   width: 100%;
   gap: 8px;
 }
+.social-link{
+  text-decoration: none;
+}
 
 .social-media img {
   width: 16px;
