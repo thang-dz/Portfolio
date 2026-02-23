@@ -64,6 +64,7 @@ function App() {
 
               <a
                 target="_blank"
+                className="social-link"
                 href="https://calendly.com/vumanhthang711/30min"
               >
                 < button className="contact-btn">
@@ -82,7 +83,7 @@ function App() {
                     <p>/VuManhThang</p>
                   </div>
                 </a>
-                <a target="_blank" href="https://github.com/thang-dz/">
+                <a target="_blank" href="https://github.com/thang-dz/" className="social-link">
                   <div className="sm-tools">
                     <img src={GithubIcon} />
                     <p>/VuManhThang</p>
@@ -90,6 +91,7 @@ function App() {
                 </a>
                 <a
                   target="_blank"
+                  className="social-link"
                   href="https://www.linkedin.com/in/thang-vu-321b23276/"
                 >
                   <div className="sm-tools">
