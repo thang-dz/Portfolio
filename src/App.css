@@ -512,4 +512,7 @@ body {
   .introduce{
     height: 510px;
   }
+  .contact-btn{
+    font-size: 12px;
+  }
 }
