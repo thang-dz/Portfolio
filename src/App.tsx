@@ -1,3 +1,4 @@
+import { TypeAnimation } from "react-type-animation";
 import "./index.css";
 
 const App = () => {
@@ -56,6 +57,10 @@ const App = () => {
       herf: "https://github.com/thang-dz/wordToImage",
     },
   ];
+  const text =
+    "I am currently a Fullstack Intern, with my main responsibilities focused on basic Frontend development. Although my current tasks involve simple features, I see this as an important foundation for understanding how a web application works from the user interface to the overall user experience. Driven by a strong passion for technology, I aim to gradually expand my skills into Backend development and system design, with the goal of becoming a well-rounded Fullstack Developer in the future!";
+  const formatText = text.replace(/\. /g, ".\n\n");
+
   return (
     <div className="bg-white min-h-screen">
       <div className="w-full  max-w-screen-lg mx-auto px-4 py-8">
@@ -146,30 +151,15 @@ const App = () => {
               <div className="p-6 pt-0">
                 <div className="text-neutral-500">
                   <div className="relative font-mono whitespace-pre-line">
-                    <div className="invisible">
-                      "I am currently a Fullstack Intern, with my main
-                      responsibilities focused on basic Frontend development.
-                      Although my current tasks involve simple features, I see
-                      this as an important foundation for understanding how a
-                      web application works from the user interface to the
-                      overall user experience. Driven by a strong passion for
-                      technology, I aim to gradually expand my skills into
-                      Backend development and system design, with the goal of
-                      becoming a well-rounded Fullstack Developer in the
-                      future!"
-                    </div>
+                    <div className="invisible">{formatText}</div>
                     <div className="absolute inset-0 h-full w-full">
-                      "I am currently a Fullstack Intern, with my main
-                      responsibilities focused on basic Frontend development.
-                      Although my current tasks involve simple features, I see
-                      this as an important foundation for understanding how a
-                      web application works from the user interface to the
-                      overall user experience. Driven by a strong passion for
-                      technology, I aim to gradually expand my skills into
-                      Backend development and system design, with the goal of
-                      becoming a well-rounded Fullstack Developer in the
-                      future!"
-                      <span className="opacity-0"> |</span>
+                      <TypeAnimation
+                        sequence={[formatText]}
+                        speed={80}
+                        wrapper="span"
+                        cursor={true}
+                        repeat={0}
+                      />
                     </div>
                   </div>
                 </div>
@@ -178,42 +168,43 @@ const App = () => {
             <h3 className="text-xl font-bold mb-4">Featured Projects</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               {projects.map((project, index) => (
-                <div
-                  key={index}
-                  className="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm relative"
-                >
-                  <div></div>
-                  <div className="p-6 pt-6 h-full">
-                    <div className="flex flex-col h-full">
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-semibold text-primary hover:underline"
-                        href={project.herf}
-                      >
-                        {project.name}
-                      </a>
-                      <p className="text-sm text-neutral-500 mt-1 mb-4">
-                        {project.des}
-                      </p>
-                      <div className="mt-auto flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <div
-                            className={`size-4 rounded-full ${project.color}`}
-                          ></div>
-                          <span className="text-xs font-medium text-muted-foreground">
-                            {project.skill}
-                          </span>
-                        </div>
+                <div className=" 0 p-[1.5px] rounded-lg w-full animate-rotate-border max-w-sm transition-all duration-800 ease-out bg-conic/[from_var(--border-angle)] from-white via-red-500  via-purple-500 to-white from-60% via-75% via-90% to-100%">
+                  <div
+                    key={index}
+                    className="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm relative"
+                  >
+                    <div className="p-6 pt-6 h-full">
+                      <div className="flex flex-col h-full">
                         <a
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-sm text-primary hover:underline"
+                          className="font-semibold text-primary hover:underline"
                           href={project.herf}
                         >
-                          View Project
-                          <img src="a-l.svg" className="size-3" />
+                          {project.name}
                         </a>
+                        <p className="text-sm text-neutral-500 mt-1 mb-4">
+                          {project.des}
+                        </p>
+                        <div className="mt-auto flex items-center justify-between">
+                          <div className="flex items-center space-x-2">
+                            <div
+                              className={`size-4 rounded-full ${project.color}`}
+                            ></div>
+                            <span className="text-xs font-medium text-muted-foreground">
+                              {project.skill}
+                            </span>
+                          </div>
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-sm text-primary hover:underline"
+                            href={project.herf}
+                          >
+                            View Project
+                            <img src="a-l.svg" className="size-3" />
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
