@@ -1,5 +1,6 @@
 import { TypeAnimation } from "react-type-animation";
 import "./index.css";
+import Button from "./component/Button";
 
 const App = () => {
   const socials = [
@@ -97,9 +98,9 @@ const App = () => {
                       className="font-semibold mt-4 w-full"
                       href="https://calendly.com/vumanhthang711/30min"
                     >
-                      <button className="cursor-pointer group relative rounded-full bg-gradient-to-r from-blue-300/30 via-blue-500/30 via-40% to-purple-500/30 p-1 text-white transition-transform hover:scale-110 active:scale-105 w-full">
+                      <Button>
                         <div className="font-semibold">CONTACT ME</div>
-                      </button>
+                      </Button>
                     </a>
                     <div className="mt-4 flex flex-col space-y-2 border-t border-neutral-500 pt-4 w-full">
                       {socials.map((social, index) => (
@@ -168,11 +169,12 @@ const App = () => {
             <h3 className="text-xl font-bold mb-4">Featured Projects</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               {projects.map((project, index) => (
-                <div className=" 0 p-[1.5px] rounded-lg w-full animate-rotate-border max-w-sm transition-all duration-800 ease-out bg-conic/[from_var(--border-angle)] from-white via-red-500  via-purple-500 to-white from-60% via-75% via-90% to-100%">
-                  <div
-                    key={index}
-                    className="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm relative"
-                  >
+                <div
+                  key={index}
+                  className=" relative  p-[2px] rounded-lg w-full  max-w-sm transition-all duration-800 ease-out animate-rotate-border
+                            bg-[conic-gradient(from_var(--border-angle),transparent_0deg,#ef4444_40deg,#a855f7_60deg,#3b82f6_80deg,transparent_100deg)]"
+                >
+                  <div className="rounded-lg  bg-white text-neutral-950 shadow-sm relative">
                     <div className="p-6 pt-6 h-full">
                       <div className="flex flex-col h-full">
                         <a
