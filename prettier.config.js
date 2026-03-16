@@ -1,4 +1,3 @@
 export default {
-  plugins: ["prettier-plugin-tailwindcss"],
-  tailwindStylesheet: "./src/index.css",
+	plugins: ["prettier-plugin-tailwindcss"],
 };

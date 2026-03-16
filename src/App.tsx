@@ -1,122 +1,145 @@
 import "@/index.css";
-import AboutSection from "@/components/AboutSection";
-import AwardsSection from "@/components/AwardsSection";
-import JsonLd from "@/components/JsonLd";
-import ProjectsSection from "@/components/ProjectsSection";
-import Sidebar from "@/components/Sidebar";
-import WorkExperienceSection from "@/components/WorkExperience";
+
 import {
-  aboutText,
-  projects,
-  seo,
-  skills,
-  socials,
-  workExperiences,
+	aboutText,
+	projects,
+	seo,
+	skills,
+	socials,
+	workExperiences,
 } from "@/configurations";
+import AboutSection from "./components/about-section";
+import AwardsSection from "./components/awards-section";
+import JsonLd from "./components/jsonld";
+import ProjectsSection from "./components/projects-section";
+import Sidebar from "./components/sidebar";
+import WorkExperienceSection from "./components/work-experience";
 
 const App = () => {
-  const formattedAboutText = aboutText.replace(/\. /g, ".\n\n");
-  const imageUrl = new URL(seo.imagePath, seo.siteUrl).toString();
-  const pageId = `${seo.siteUrl}#webpage`;
-  const profilePageId = `${seo.siteUrl}#profile`;
-  const websiteId = `${seo.siteUrl}#website`;
-  const personId = `${seo.siteUrl}#person`;
-  const projectsId = `${seo.siteUrl}#projects`;
+	const formattedAboutText = aboutText.replace(/\. /g, ".\n\n");
+	const siteUrl = (
+		(import.meta as ImportMeta & { env?: { VITE_SITE_URL?: string } }).env
+			?.VITE_SITE_URL ?? seo.siteUrl
+	).replace(/\/+$/, "");
+	const imageUrl = new URL(seo.imagePath, siteUrl).toString();
+	const pageId = `${siteUrl}#webpage`;
+	const profilePageId = `${siteUrl}#profile`;
+	const websiteId = `${siteUrl}#website`;
+	const personId = `${siteUrl}#person`;
+	const projectsId = `${siteUrl}#projects`;
+	const imageId = `${siteUrl}#primaryimage`;
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": websiteId,
-        name: seo.siteName,
-        url: seo.siteUrl,
-        inLanguage: seo.language,
-      },
-      {
-        "@type": "Person",
-        "@id": personId,
-        name: seo.personName,
-        jobTitle: seo.jobTitle,
-        description: seo.description,
-        image: imageUrl,
-        url: seo.siteUrl,
-        sameAs: socials.map((social) => social.href),
-      },
-      {
-        "@type": "WebPage",
-        "@id": pageId,
-        url: seo.siteUrl,
-        name: seo.pageTitle,
-        description: seo.description,
-        isPartOf: {
-          "@id": websiteId,
-        },
-        about: {
-          "@id": personId,
-        },
-        inLanguage: seo.language,
-      },
-      {
-        "@type": "ProfilePage",
-        "@id": profilePageId,
-        url: seo.siteUrl,
-        name: `${seo.personName} Profile`,
-        isPartOf: {
-          "@id": websiteId,
-        },
-        mainEntity: {
-          "@id": personId,
-        },
-        inLanguage: seo.language,
-      },
-      {
-        "@type": "ItemList",
-        "@id": projectsId,
-        name: "Featured Projects",
-        itemListElement: projects.map((p, index) => ({
-          "@type": "CreativeWork",
-          position: index + 1,
-          name: p.name,
-          description: p.des,
-          url: p.herf,
-          creator: {
-            "@id": personId,
-          },
-        })),
-      },
-    ],
-  };
+	const structuredData = {
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "ImageObject",
+				"@id": imageId,
+				url: imageUrl,
+			},
+			{
+				"@type": "WebSite",
+				"@id": websiteId,
+				name: seo.siteName,
+				url: siteUrl,
+				inLanguage: seo.language,
+			},
+			{
+				"@type": "Person",
+				"@id": personId,
+				name: seo.personName,
+				jobTitle: seo.jobTitle,
+				description: seo.description,
+				image: imageUrl,
+				mainEntityOfPage: {
+					"@id": profilePageId,
+				},
+				url: siteUrl,
+				sameAs: socials.map((social) => social.href),
+			},
+			{
+				"@type": "WebPage",
+				"@id": pageId,
+				url: siteUrl,
+				name: seo.pageTitle,
+				description: seo.description,
+				isPartOf: {
+					"@id": websiteId,
+				},
+				mainEntity: {
+					"@id": personId,
+				},
+				primaryImageOfPage: {
+					"@id": imageId,
+				},
+				about: {
+					"@id": personId,
+				},
+				inLanguage: seo.language,
+			},
+			{
+				"@type": "ProfilePage",
+				"@id": profilePageId,
+				url: siteUrl,
+				name: `${seo.personName} Profile`,
+				isPartOf: {
+					"@id": websiteId,
+				},
+				mainEntity: {
+					"@id": personId,
+				},
+				inLanguage: seo.language,
+			},
+			{
+				"@type": "ItemList",
+				"@id": projectsId,
+				name: "Featured Projects",
+				itemListElement: projects.map((p, index) => ({
+					"@type": "ListItem",
+					position: index + 1,
+					item: {
+						"@type": "CreativeWork",
+						name: p.name,
+						description: p.des,
+						url: p.href,
+						creator: {
+							"@id": personId,
+						},
+					},
+				})),
+			},
+		],
+	};
 
-  return (
-    <div className="min-h-screen bg-white">
-      {/* JSON-LD Structured Data */}
+	return (
+		<div className="min-h-screen bg-white">
+			{/* JSON-LD Structured Data */}
 
-      <JsonLd data={structuredData} />
+			<JsonLd data={structuredData} />
 
-      {/* Main */}
-      <main>
-        <div className="mx-auto w-full max-w-5xl px-4 py-8">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <Sidebar socials={socials} skills={skills} />
+			{/* Main */}
+			<main>
+				<div className="mx-auto w-full max-w-5xl px-4 py-8">
+					<div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+						<Sidebar socials={socials} skills={skills} />
 
-            <section
-              className="overflow-x-hidden md:col-span-2"
-              aria-label="Portfolio content"
-            >
-              <AboutSection text={formattedAboutText} />
+						<section
+							className="overflow-x-hidden md:col-span-2"
+							aria-label="Portfolio content"
+						>
+							<AboutSection text={formattedAboutText} />
 
-              <ProjectsSection projects={projects} />
+							<ProjectsSection projects={projects} />
 
-              <WorkExperienceSection items={workExperiences} />
+							<WorkExperienceSection items={workExperiences} />
 
-              <AwardsSection />
-            </section>
-          </div>
-        </div>
-      </main>
-    </div>
-  );
+							<AwardsSection />
+						</section>
+					</div>
+				</div>
+			</main>
+		</div>
+	);
 };
 
 export default App;
