@@ -4,7 +4,7 @@ export interface Project {
   des: string;
   skill: string;
   color: string;
-  herf: string;
+  href: string;
   icon: string;
 }
 
@@ -29,7 +29,7 @@ const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary font-semibold hover:underline"
-                    href={project.herf}
+                    href={project.href}
                   >
                     {project.name}
                   </a>
@@ -49,7 +49,7 @@ const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary flex items-center gap-2 text-sm hover:underline"
-                      href={project.herf}
+                      href={project.href}
                     >
                       View Project
                       <img

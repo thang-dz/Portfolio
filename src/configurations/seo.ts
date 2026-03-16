@@ -1,7 +1,8 @@
 export const seo = {
   siteName: "Vu Manh Thang Portfolio",
-  siteUrl: "https://example.com",
-  googleSiteVerification: "YOUR_GOOGLE_VERIFICATION_CODE",
+  siteUrl:
+    "https://portfolio-vmt-thang-dzs-projects.vercel.app?_vercel_share=M8Dl2emcNzNWlFLeVdBvGNp3gz6r8cbS",
+  googleSiteVerification: "",
   language: "vi-VN",
   locale: "vi_VN",
   alternateLocale: "en_US",

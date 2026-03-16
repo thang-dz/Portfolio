@@ -1,5 +1,5 @@
-import ProfileCard, { type SocialLink } from "@/components/ProfileCard";
-import SkillsCard, { type Skill } from "@/components/SkillsCard";
+import ProfileCard, { type SocialLink } from "./profile-card";
+import SkillsCard, { type Skill } from "./skills-card";
 
 interface SidebarProps {
   socials: SocialLink[];

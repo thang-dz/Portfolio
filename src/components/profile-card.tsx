@@ -1,5 +1,5 @@
 import vectorIcon from "@/assets/icons/vector.svg";
-import Button from "@/components/Button";
+import Button from "./button";
 
 export interface SocialLink {
   name: string;

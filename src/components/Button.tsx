@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import Flower from "@/components/Flower";
+import Flower from "./flower";
 
 interface ButtonProps {
   children?: ReactNode;

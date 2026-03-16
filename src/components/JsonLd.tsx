@@ -3,5 +3,10 @@ type Props = {
 };
 
 export default function JsonLd({ data }: Props) {
-  return <script type="application/ld+json">{JSON.stringify(data)}</script>;
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
 }

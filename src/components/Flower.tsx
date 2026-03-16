@@ -1,4 +1,4 @@
-import Petal from "@/components/Petal";
+import Petal from "./petal";
 
 export default function Flower({ className }: { className?: string }) {
   return (

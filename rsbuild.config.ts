@@ -1,24 +1,25 @@
 import path from "node:path";
-import { defineConfig } from "@rsbuild/core";
+import { defineConfig, type RsbuildConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
 import { seo } from "./src/configurations/seo";
 
-const canonicalUrl = `${seo.siteUrl}/`;
+const canonicalUrl = new URL("/", seo.siteUrl).toString();
 const coverImageUrl = new URL(seo.coverImagePath, seo.siteUrl).toString();
 const coverImageExt =
   seo.coverImagePath.split(".").pop()?.toLowerCase() || "png";
 const ogImageType = `image/${coverImageExt === "jpg" ? "jpeg" : coverImageExt}`;
 
-export default defineConfig({
-  plugins: [pluginReact()],
-  html: {
+export default defineConfig(({ envMode }) => {
+  const isStaticBuild = envMode === "static";
+  const html: RsbuildConfig["html"] = {
     title: seo.pageTitle,
     favicon: "./public/favicon.ico",
     meta: {
+      viewport: "width=device-width, initial-scale=1",
       description: seo.description,
       keywords: seo.keywords,
       author: seo.personName,
-      "google-site-verification": seo.googleSiteVerification || false,
+      "google-site-verification": seo.googleSiteVerification ?? false,
       robots:
         "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
       googlebot:
@@ -156,10 +157,24 @@ export default defineConfig({
         head: true,
       },
     ],
-  },
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+    ...(isStaticBuild ? { inject: "body" as const } : {}),
+  };
+
+  return {
+    plugins: [pluginReact()],
+    html,
+    ...(isStaticBuild
+      ? {
+          output: {
+            inlineScripts: true,
+            inlineStyles: true,
+          },
+        }
+      : {}),
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
     },
-  },
+  };
 });

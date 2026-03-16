@@ -43,7 +43,7 @@ export const projects = [
     des: "A simple tool to satisfy your passion for creating comics, transforming written stories into comics",
     skill: "React",
     color: "bg-blue-600",
-    herf: "https://github.com/thang-dz/wordToImage",
+    href: "https://github.com/thang-dz/wordToImage",
     icon: arrowLeftIcon,
   },
   {
@@ -52,7 +52,7 @@ export const projects = [
     des: "A simple tool to satisfy your passion for creating comics, transforming written stories into comics",
     skill: "React",
     color: "bg-blue-600",
-    herf: "https://github.com/thang-dz/wordToImage",
+    href: "https://github.com/thang-dz/wordToImage",
     icon: arrowLeftIcon,
   },
   {
@@ -61,7 +61,7 @@ export const projects = [
     des: "A simple tool to satisfy your passion for creating comics, transforming written stories into comics",
     skill: "React",
     color: "bg-blue-600",
-    herf: "https://github.com/thang-dz/wordToImage",
+    href: "https://github.com/thang-dz/wordToImage",
     icon: arrowLeftIcon,
   },
   {
@@ -70,7 +70,7 @@ export const projects = [
     des: "A simple tool to satisfy your passion for creating comics, transforming written stories into comics",
     skill: "React",
     color: "bg-blue-600",
-    herf: "https://github.com/thang-dz/wordToImage",
+    href: "https://github.com/thang-dz/wordToImage",
     icon: arrowLeftIcon,
   },
 ];
